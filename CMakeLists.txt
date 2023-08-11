@@ -17,6 +17,8 @@ CPMAddPackage(
 
 add_executable(${PROJECT_NAME} 
     src/helloworld.cpp
+    src/ASIAlpaca_Camera.h
+    src/ASIAlpaca_Camera.cc
 )
 
 # asi camera

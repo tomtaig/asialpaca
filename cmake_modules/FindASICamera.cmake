@@ -11,6 +11,8 @@ message(ASICAMERA_INCLUDE_DIRS="${ASICAMERA_INCLUDE_DIRS}")
 
 add_library(ASICAMERA_LIBRARY STATIC IMPORTED)
 
+target_link_libraries(ASICAMERA_LIBRARY INTERFACE usb-1.0)
+
 set_target_properties(ASICAMERA_LIBRARY
                         PROPERTIES INTERFACE_INCLUDE_DIRECTORIES
                                    "${ASICAMERA_INCLUDE_DIRS}"
