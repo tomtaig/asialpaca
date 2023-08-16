@@ -9,7 +9,7 @@ using namespace boost::assign;
 std::map<ASI_CONTROL_TYPE, ASI_CONTROL_CAPS> caps;
 
 std::map<int, std::string> asiErrorCodeMap = map_list_of 
-    (ASI_SUCCESS, "ASI_SUCCESS")
+    (ASI_SUCCESS, "")
     (ASI_ERROR_INVALID_INDEX, "ASI_ERROR_INVALID_INDEX")
     (ASI_ERROR_INVALID_ID, "ASI_ERROR_INVALID_ID")
     (ASI_ERROR_INVALID_CONTROL_TYPE, "ASI_ERROR_INVALID_CONTROL_TYPE")
@@ -40,6 +40,8 @@ void Camera::getConnected(const HttpRequestPtr &req,
     
     Json::Value json;
     json["Value"]= connected ? "True" : "False" ;
+    json["ErrorCode"] = "0";
+    json["ErrorMessage"] = "";
 
     auto resp=HttpResponse::newHttpJsonResponse(json);
 
@@ -107,7 +109,9 @@ void Camera::setConnected(const HttpRequestPtr &req,
                     }
                 }
             }
+
             errorCode = asiErrorCode;
+            errorMessage =asiErrorCodeMap[errorCode];
         } 
         else if (boost::iequals(connectedStr, "false")) 
         {
@@ -129,7 +133,7 @@ void Camera::setConnected(const HttpRequestPtr &req,
 
     Json::Value response;
 
-    response["ErrorCode"] = asiErrorCodeMap[errorCode];
+    response["ErrorCode"] = errorCode;
     response["ErrorMessage"] = errorMessage;
 
     auto resp=HttpResponse::newHttpJsonResponse(response);
@@ -145,6 +149,8 @@ void Camera::getBayerOffsetX(const HttpRequestPtr &req,
 
     // TODO: research this
     json["Value"]=0;
+    json["ErrorCode"] = "0";
+    json["ErrorMessage"] = "";
 
     auto resp=HttpResponse::newHttpJsonResponse(json);
 
@@ -159,6 +165,8 @@ void Camera::getBayerOffsetY(const HttpRequestPtr &req,
 
     // TODO: research this
     json["Value"]=0;
+    json["ErrorCode"] = "0";
+    json["ErrorMessage"] = "";
 
     auto resp=HttpResponse::newHttpJsonResponse(json);
 
@@ -177,9 +185,8 @@ void Camera::getBinX(const HttpRequestPtr &req,
     auto errorCode = ASIGetControlValue(info.CameraID, ASI_HARDWARE_BIN, &controlValue, &controlAuto);
 
     json["Value"]=controlValue;
-
-    json["ErrorCode"] = asiErrorCodeMap[errorCode];
-    json["ErrorMessage"] = "";
+    json["ErrorCode"] = errorCode;
+    json["ErrorMessage"] = asiErrorCodeMap[errorCode];
 
     auto resp=HttpResponse::newHttpJsonResponse(json);
 
@@ -199,9 +206,8 @@ void Camera::getBinY(const HttpRequestPtr &req,
     auto errorCode = ASIGetControlValue(info.CameraID, ASI_HARDWARE_BIN, &controlValue, &controlAuto);
 
     json["Value"]=controlValue;
-
-    json["ErrorCode"] = asiErrorCodeMap[errorCode];
-    json["ErrorMessage"] = "";
+    json["ErrorCode"] = errorCode;
+    json["ErrorMessage"] = asiErrorCodeMap[errorCode];
 
     auto resp=HttpResponse::newHttpJsonResponse(json);
 
@@ -220,8 +226,8 @@ void Camera::setBinX(const HttpRequestPtr &req,
 
     auto errorCode=ASISetControlValue(info.CameraID, ASI_HARDWARE_BIN, controlValue, ASI_FALSE);
 
-    json["ErrorCode"] = asiErrorCodeMap[errorCode];
-    json["ErrorMessage"] = "";
+    json["ErrorCode"] = errorCode;
+    json["ErrorMessage"] = asiErrorCodeMap[errorCode];
 
     auto resp=HttpResponse::newHttpJsonResponse(json);
 
@@ -241,8 +247,8 @@ void Camera::setBinY(const HttpRequestPtr &req,
 
     auto errorCode = ASISetControlValue(info.CameraID, ASI_HARDWARE_BIN, controlValue, ASI_FALSE);
 
-    json["ErrorCode"] = asiErrorCodeMap[errorCode];
-    json["ErrorMessage"] = "";
+    json["ErrorCode"] = errorCode;
+    json["ErrorMessage"] = asiErrorCodeMap[errorCode];
 
     auto resp=HttpResponse::newHttpJsonResponse(json);
 
@@ -256,7 +262,6 @@ void Camera::getCameraXSize(const HttpRequestPtr &req,
     Json::Value json;
 
     json["Value"]=info.MaxWidth;
-
     json["ErrorCode"] = "0";
     json["ErrorMessage"] = "";
 
@@ -273,7 +278,6 @@ void Camera::getCameraYSize(const HttpRequestPtr &req,
     Json::Value json;
 
     json["Value"]=info.MaxHeight;
-
     json["ErrorCode"] = "0";
     json["ErrorMessage"] = "";
 
@@ -289,7 +293,6 @@ void Camera::getCanAbortExposure(const HttpRequestPtr &req,
     Json::Value json;
 
     json["Value"]="True";
-
     json["ErrorCode"] = "0";
     json["ErrorMessage"] = "";
 
@@ -305,9 +308,288 @@ void Camera::getCanFastReadout(const HttpRequestPtr &req,
     Json::Value json;
 
     json["Value"]= caps[ASI_HIGH_SPEED_MODE].MaxValue == 1 ? "True" : "False";
-
     json["ErrorCode"] = "0";
     json["ErrorMessage"] = "";
+
+    auto resp=HttpResponse::newHttpJsonResponse(json);
+
+    callback(resp);
+}
+
+void Camera::getCanGetCoolerPower(const HttpRequestPtr &req,
+                 std::function<void (const HttpResponsePtr &)> &&callback,
+                 int deviceNumber)
+{    
+    Json::Value json;
+
+    json["Value"]= info.IsCoolerCam ? "True" : "False";
+    json["ErrorCode"] = "0";
+    json["ErrorMessage"] = "";
+
+    auto resp=HttpResponse::newHttpJsonResponse(json);
+
+    callback(resp);
+}
+
+void Camera::getCanPulseGuide(const HttpRequestPtr &req,
+                 std::function<void (const HttpResponsePtr &)> &&callback,
+                 int deviceNumber)
+{    
+    Json::Value json;
+
+    json["Value"]= info.ST4Port ? "True" : "False";
+    json["ErrorCode"] = "0";
+    json["ErrorMessage"] = "";
+
+    auto resp=HttpResponse::newHttpJsonResponse(json);
+
+    callback(resp);
+}
+
+void Camera::getCanSetCcdTemperature(const HttpRequestPtr &req,
+                 std::function<void (const HttpResponsePtr &)> &&callback,
+                 int deviceNumber)
+{    
+    Json::Value json;
+
+    json["Value"]= caps.count(ASI_TARGET_TEMP) ? "True" : "False";
+    json["ErrorCode"] = "0";
+    json["ErrorMessage"] = "";
+
+    auto resp=HttpResponse::newHttpJsonResponse(json);
+
+    callback(resp);
+}
+
+void Camera::getCanAsymmetricBin(const HttpRequestPtr &req,
+                 std::function<void (const HttpResponsePtr &)> &&callback,
+                 int deviceNumber)
+{    
+    Json::Value json;
+
+    json["Value"]= "False";
+    json["ErrorCode"] = "0";
+    json["ErrorMessage"] = "";
+
+    auto resp=HttpResponse::newHttpJsonResponse(json);
+
+    callback(resp);
+}
+
+void Camera::getCanStopExposure(const HttpRequestPtr &req,
+                 std::function<void (const HttpResponsePtr &)> &&callback,
+                 int deviceNumber)
+{    
+    Json::Value json;
+
+    json["Value"]= "True";
+    json["ErrorCode"] = "0";
+    json["ErrorMessage"] = "";
+
+    auto resp=HttpResponse::newHttpJsonResponse(json);
+
+    callback(resp);
+}
+
+void Camera::getCcdTemperature(const HttpRequestPtr &req,
+                 std::function<void (const HttpResponsePtr &)> &&callback,
+                 int deviceNumber)
+{    
+    Json::Value json;
+
+    ASI_BOOL controlAuto;
+    long controlValue;
+
+    auto errorCode = ASIGetControlValue(info.CameraID, ASI_TEMPERATURE, &controlValue, &controlAuto);
+
+    json["Value"] = (double)controlValue / 10.0;
+    json["ErrorCode"] = errorCode;
+    json["ErrorMessage"] = asiErrorCodeMap[errorCode];
+
+    auto resp=HttpResponse::newHttpJsonResponse(json);
+
+    callback(resp);
+}
+
+void Camera::getCoolerOn(const HttpRequestPtr &req,
+                 std::function<void (const HttpResponsePtr &)> &&callback,
+                 int deviceNumber)
+{    
+    Json::Value json;
+    
+    ASI_BOOL controlAuto;
+    long controlValue;
+
+    auto errorCode = ASIGetControlValue(info.CameraID, ASI_COOLER_ON, &controlValue, &controlAuto);
+
+    json["Value"] = controlValue == caps[ASI_COOLER_ON].MaxValue ? "True" : "False";
+    json["ErrorCode"] = errorCode;
+    json["ErrorMessage"] = asiErrorCodeMap[errorCode];
+
+    auto resp=HttpResponse::newHttpJsonResponse(json);
+
+    callback(resp);
+}
+
+void Camera::setCoolerOn(const HttpRequestPtr &req,
+                 std::function<void (const HttpResponsePtr &)> &&callback,
+                 int deviceNumber)
+{    
+    Json::Value json;
+    
+    long controlValue = req->getParameter("CoolerOn") == "True" ? ASI_TRUE : ASI_FALSE;
+
+    LOG_DEBUG<<"Camera "<< deviceNumber<< ": Set CoolerOn="<<controlValue;
+
+    auto errorCode = ASISetControlValue(info.CameraID, ASI_COOLER_ON, controlValue, ASI_FALSE);
+
+    json["ErrorCode"] = errorCode;
+    json["ErrorMessage"] = asiErrorCodeMap[errorCode];
+
+    auto resp=HttpResponse::newHttpJsonResponse(json);
+
+    callback(resp);
+}
+
+void Camera::getCoolerPower(const HttpRequestPtr &req,
+                 std::function<void (const HttpResponsePtr &)> &&callback,
+                 int deviceNumber)
+{    
+    Json::Value json;
+    
+    ASI_BOOL controlAuto;
+    long controlValue;
+
+    if (info.IsCoolerCam) 
+    {
+        auto errorCode = ASIGetControlValue(info.CameraID, ASI_COOLER_POWER_PERC, &controlValue, &controlAuto);
+        auto cap = caps[ASI_COOLER_POWER_PERC];
+
+        if (errorCode == ASI_SUCCESS) 
+        {
+            json["Value"] = (double)(controlValue - cap.MinValue) / (double)cap.MaxValue * 100.0;
+        }
+
+        json["ErrorCode"] = errorCode;
+        json["ErrorMessage"] = asiErrorCodeMap[errorCode];
+    }
+    else
+    {
+        json["Value"] = 0;
+        json["ErrorCode"] = "0";
+        json["ErrorMessage"] = "";
+    }
+    
+
+    auto resp=HttpResponse::newHttpJsonResponse(json);
+
+    callback(resp);
+}
+
+void Camera::getElectronsPerAdu(const HttpRequestPtr &req,
+                 std::function<void (const HttpResponsePtr &)> &&callback,
+                 int deviceNumber)
+{    
+    Json::Value json;
+    
+    json["Value"] = info.ElecPerADU;
+    json["ErrorCode"] = "0";
+    json["ErrorMessage"] = "";
+    
+    auto resp=HttpResponse::newHttpJsonResponse(json);
+
+    callback(resp);
+}
+
+void Camera::getExposureMax(const HttpRequestPtr &req,
+                 std::function<void (const HttpResponsePtr &)> &&callback,
+                 int deviceNumber)
+{    
+    Json::Value json;
+    
+    ASI_BOOL controlAuto;
+    long controlValue;
+
+    auto cap = caps[ASI_EXPOSURE];
+
+    json["Value"] = (double)cap.MaxValue / 1000000.0;
+    json["ErrorCode"] = "0";
+    json["ErrorMessage"] = "";
+    
+    auto resp=HttpResponse::newHttpJsonResponse(json);
+
+    callback(resp);
+}
+
+void Camera::getExposureMin(const HttpRequestPtr &req,
+                 std::function<void (const HttpResponsePtr &)> &&callback,
+                 int deviceNumber)
+{    
+    Json::Value json;
+    
+    ASI_BOOL controlAuto;
+    long controlValue;
+
+    auto cap = caps[ASI_EXPOSURE];
+
+    json["Value"] = (double)cap.MinValue / 1000000.0;
+    json["ErrorCode"] = "0";
+    json["ErrorMessage"] = "";
+
+    auto resp=HttpResponse::newHttpJsonResponse(json);
+
+    callback(resp);
+}
+
+void Camera::getExposureResolution(const HttpRequestPtr &req,
+                 std::function<void (const HttpResponsePtr &)> &&callback,
+                 int deviceNumber)
+{    
+    Json::Value json;
+    
+    json["Value"] = 1.0/1000000.0;
+    json["ErrorCode"] = "0";
+    json["ErrorMessage"] = "";
+    
+    auto resp=HttpResponse::newHttpJsonResponse(json);
+
+    callback(resp);
+}
+
+void Camera::getFastReadout(const HttpRequestPtr &req,
+                 std::function<void (const HttpResponsePtr &)> &&callback,
+                 int deviceNumber)
+{    
+    Json::Value json;
+    
+    ASI_BOOL controlAuto;
+    long controlValue;
+
+    auto errorCode = ASIGetControlValue(info.CameraID, ASI_HIGH_SPEED_MODE, &controlValue, &controlAuto);
+
+    json["Value"]=controlValue == 1 ? "True" : "False";
+    json["ErrorCode"] = errorCode;
+    json["ErrorMessage"] = asiErrorCodeMap[errorCode];
+    
+    auto resp=HttpResponse::newHttpJsonResponse(json);
+
+    callback(resp);
+}
+
+void Camera::setFastReadout(const HttpRequestPtr &req,
+                 std::function<void (const HttpResponsePtr &)> &&callback,
+                 int deviceNumber)
+{   
+    Json::Value json;
+    
+    long controlValue = req->getParameter("FastReadout") == "True" ? ASI_TRUE : ASI_FALSE;
+
+    LOG_DEBUG<<"Camera "<< deviceNumber<< ": Set CoolerOn="<<controlValue;
+
+    auto errorCode = ASISetControlValue(info.CameraID, ASI_HIGH_SPEED_MODE, controlValue, ASI_FALSE);
+
+    json["ErrorCode"] = errorCode;
+    json["ErrorMessage"] = asiErrorCodeMap[errorCode];
 
     auto resp=HttpResponse::newHttpJsonResponse(json);
 
