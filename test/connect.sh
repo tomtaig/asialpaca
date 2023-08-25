@@ -158,14 +158,6 @@ curl -X GET \
 -H "Content-Type: application/x-www-form-urlencoded" \
 -d "ClientID=&ClientTransactionID="
 
-echo $'\n'http://localhost:8080/api/v1/camera/0/electronsperadu
-
-curl -X GET \
-"http://localhost:8080/api/v1/camera/0/electronsperadu" \
--H "accept: application/json" \
--H "Content-Type: application/x-www-form-urlencoded" \
--d "ClientID=&ClientTransactionID="
-
 echo $'\n'http://localhost:8080/api/v1/camera/0/exposuremax
 
 curl -X GET \
@@ -218,6 +210,110 @@ echo $'\n'http://localhost:8080/api/v1/camera/0/fastreadout
 
 curl -X GET \
 "http://localhost:8080/api/v1/camera/0/fastreadout" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'PUT http://localhost:8080/api/v1/camera/0/gain
+
+curl -X PUT \
+"http://localhost:8080/api/v1/camera/0/gain" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID=&Gain=0"
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/gain
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/gain" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/electronsperadu
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/electronsperadu" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/gainmax
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/gainmax" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/gainmin
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/gainmin" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/fullwellcapacity
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/fullwellcapacity" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/gains
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/gains" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/hasshutter
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/hasshutter" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/heatsinktemperature
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/heatsinktemperature" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/imageready
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/imageready" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/ispulseguiding
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/ispulseguiding" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/lastexposureduration
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/lastexposureduration" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/lastexposurestarttime
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/lastexposurestarttime" \
 -H "accept: application/json" \
 -H "Content-Type: application/x-www-form-urlencoded" \
 -d "ClientID=&ClientTransactionID="

@@ -26,7 +26,7 @@ namespace api::v1
       METHOD_ADD(Camera::getBinY, "/{1}/binY", Get);
       METHOD_ADD(Camera::setBinX, "/{1}/binX", Put);
       METHOD_ADD(Camera::setBinY, "/{1}/binY", Put);
-      //METHOD_ADD(Camera::getCameraState, "/{1}/camerastate", Get);
+      METHOD_ADD(Camera::getCameraState, "/{1}/camerastate", Get);
       METHOD_ADD(Camera::getCameraXSize, "/{1}/cameraxsize", Get);
       METHOD_ADD(Camera::getCameraYSize, "/{1}/cameraysize", Get);
       METHOD_ADD(Camera::getCanAbortExposure, "/{1}/canabortexposure", Get);
@@ -46,6 +46,18 @@ namespace api::v1
       METHOD_ADD(Camera::getExposureResolution, "/{1}/exposureresolution", Get);
       METHOD_ADD(Camera::getFastReadout, "/{1}/fastreadout", Get);
       METHOD_ADD(Camera::setFastReadout, "/{1}/fastreadout", Put);
+      METHOD_ADD(Camera::getFullWellCapacity, "/{1}/fullwellcapacity", Get);
+      METHOD_ADD(Camera::getGain, "/{1}/gain", Get);
+      METHOD_ADD(Camera::setGain, "/{1}/gain", Put);
+      METHOD_ADD(Camera::getGainMax, "/{1}/gainmax", Get);
+      METHOD_ADD(Camera::getGainMin, "/{1}/gainmin", Get);
+      METHOD_ADD(Camera::getGains, "/{1}/gains", Get);
+      METHOD_ADD(Camera::getHasShutter, "/{1}/hasshutter", Get);
+      METHOD_ADD(Camera::getHeatsinkTemperature, "/{1}/heatsinktemperature", Get);
+      METHOD_ADD(Camera::getImageReady, "/{1}/imageready", Get);
+      METHOD_ADD(Camera::getIsPulseGuiding, "/{1}/ispulseguiding", Get);
+      METHOD_ADD(Camera::getLastExposureDuration, "/{1}/lastexposureduration", Get);
+      METHOD_ADD(Camera::getLastExposureStartTime, "/{1}/lastexposurestarttime", Get);
       METHOD_LIST_END
       
       void getConnected(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
@@ -56,6 +68,7 @@ namespace api::v1
       void getBinY(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
       void setBinX(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
       void setBinY(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
+      void getCameraState(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
       void getCameraXSize(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
       void getCameraYSize(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
       void getCanAbortExposure(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
@@ -75,5 +88,17 @@ namespace api::v1
       void getExposureResolution(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
       void getFastReadout(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
       void setFastReadout(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
+      void getFullWellCapacity(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
+      void getGain(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
+      void setGain(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
+      void getGainMax(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
+      void getGainMin(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
+      void getGains(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
+      void getHasShutter(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
+      void getHeatsinkTemperature(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
+      void getImageReady(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
+      void getIsPulseGuiding(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
+      void getLastExposureDuration(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
+      void getLastExposureStartTime(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
   };
 }
