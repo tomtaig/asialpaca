@@ -317,3 +317,259 @@ curl -X GET \
 -H "accept: application/json" \
 -H "Content-Type: application/x-www-form-urlencoded" \
 -d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/maxadu
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/maxadu" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/maxbinx
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/maxbinx" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/maxbiny
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/maxbiny" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'PUT http://localhost:8080/api/v1/camera/0/numx
+
+curl -X PUT \
+"http://localhost:8080/api/v1/camera/0/numx" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID=&NumX=32"
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/numx
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/numx" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'PUT http://localhost:8080/api/v1/camera/0/numy
+
+curl -X PUT \
+"http://localhost:8080/api/v1/camera/0/numy" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID=&NumY=32"
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/numy
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/numy" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'PUT http://localhost:8080/api/v1/camera/0/offset
+
+curl -X PUT \
+"http://localhost:8080/api/v1/camera/0/offset" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID=&Offset=10"
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/offset
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/offset" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/offsetmax
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/offsetmax" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/offsetmin
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/offsetmin" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/offsets
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/offsets" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/percentcompleted
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/percentcompleted" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/pixelsizex
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/pixelsizex" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/pixelsizey
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/pixelsizey" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/readoutmodes
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/readoutmodes" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'PUT http://localhost:8080/api/v1/camera/0/readoutmode
+
+curl -X PUT \
+"http://localhost:8080/api/v1/camera/0/readoutmode" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID=&ReadoutMode=0"
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/readoutmode
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/readoutmode" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/sensorname
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/sensorname" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/sensortype
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/sensortype" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'PUT http://localhost:8080/api/v1/camera/0/setccdtemperature
+
+curl -X PUT \
+"http://localhost:8080/api/v1/camera/0/setccdtemperature" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID=&SetCCDTemperature=-5"
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/setccdtemperature
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/setccdtemperature" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'PUT http://localhost:8080/api/v1/camera/0/startx
+
+curl -X PUT \
+"http://localhost:8080/api/v1/camera/0/startx" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID=&StartX=32"
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/startx
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/startx" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'PUT http://localhost:8080/api/v1/camera/0/starty
+
+curl -X PUT \
+"http://localhost:8080/api/v1/camera/0/starty" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID=&StartY=32"
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/starty
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/starty" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'PUT http://localhost:8080/api/v1/camera/0/starty
+
+curl -X PUT \
+"http://localhost:8080/api/v1/camera/0/subexposureduration" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID=&SubexposureDuration=5.1234561"
+
+echo $'\n'http://localhost:8080/api/v1/camera/0/subexposureduration
+
+curl -X GET \
+"http://localhost:8080/api/v1/camera/0/subexposureduration" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'PUT http://localhost:8080/api/v1/camera/0/abortexposure
+
+curl -X PUT \
+"http://localhost:8080/api/v1/camera/0/abortexposure" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'PUT http://localhost:8080/api/v1/camera/0/pulseguide
+
+curl -X PUT \
+"http://localhost:8080/api/v1/camera/0/pulseguide" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
+
+echo $'\n'PUT http://localhost:8080/api/v1/camera/0/startexposure
+
+curl -X PUT \
+"http://localhost:8080/api/v1/camera/0/startexposure" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID=&Duration=1&Light=False"
+
+echo $'\n'PUT http://localhost:8080/api/v1/camera/0/stopexposure
+
+curl -X PUT \
+"http://localhost:8080/api/v1/camera/0/stopexposure" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "ClientID=&ClientTransactionID="
