@@ -15,11 +15,14 @@ namespace api::v1
 
     public:
       METHOD_LIST_BEGIN
+      
       // device generic methods
       METHOD_ADD(Camera::action, "/{1}/action", Put);
       METHOD_ADD(Camera::commandBlind, "/{1}/commandblind", Put);
       METHOD_ADD(Camera::commandBool, "/{1}/commandbool", Put);
       METHOD_ADD(Camera::commandString, "/{1}/commandstring", Put);
+
+      // device generic properties
       METHOD_ADD(Camera::getConnected, "/{1}/connected", Get);
       METHOD_ADD(Camera::setConnected, "/{1}/connected", Put);
       METHOD_ADD(Camera::getDescription, "/{1}/description", Get);
@@ -30,6 +33,16 @@ namespace api::v1
       METHOD_ADD(Camera::getSupportedActions, "/{1}/supportedactions", Get);
 
       //camera methods
+      METHOD_ADD(Camera::abortExposure, "/{1}/abortexposure", Put);
+      METHOD_ADD(Camera::pulseGuide, "/{1}/pulseguide", Put);
+      METHOD_ADD(Camera::startExposure, "/{1}/startexposure", Put);
+      METHOD_ADD(Camera::stopExposure, "/{1}/stopexposure", Put);
+
+      // camera image properties
+      METHOD_ADD(Camera::getImageArray2, "/{1}/imageArray", Get);
+      METHOD_ADD(Camera::getImageArray, "/{1}/imageArray2", Get);
+
+      //camera properties
       METHOD_ADD(Camera::getBayerOffsetX, "/{1}/bayerOffsetX", Get);
       METHOD_ADD(Camera::getBayerOffsetY, "/{1}/bayerOffsetY", Get);
       METHOD_ADD(Camera::getBinX, "/{1}/binX", Get);
@@ -96,10 +109,6 @@ namespace api::v1
       METHOD_ADD(Camera::setStartY, "/{1}/starty", Put);
       METHOD_ADD(Camera::getSubexposureDuration, "/{1}/subexposureduration", Get);
       METHOD_ADD(Camera::setSubexposureDuration, "/{1}/subexposureduration", Put);
-      METHOD_ADD(Camera::abortExposure, "/{1}/abortexposure", Put);
-      METHOD_ADD(Camera::pulseGuide, "/{1}/pulseguide", Put);
-      METHOD_ADD(Camera::startExposure, "/{1}/startexposure", Put);
-      METHOD_ADD(Camera::stopExposure, "/{1}/stopexposure", Put);
       METHOD_LIST_END
       
       void action(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
@@ -186,5 +195,7 @@ namespace api::v1
       void pulseGuide(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
       void startExposure(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
       void stopExposure(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
+      void getImageArray(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
+      void getImageArray2(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int deviceNumber);
   };
 }

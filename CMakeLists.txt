@@ -10,9 +10,9 @@ include(cmake/CPM.cmake)
 
 CPMAddPackage(
     NAME drogon
-    VERSION 1.7.5
+    VERSION 1.8.6
     GITHUB_REPOSITORY drogonframework/drogon
-    GIT_TAG v1.7.5
+    GIT_TAG v1.8.6
 )
 
 add_executable(${PROJECT_NAME} 
